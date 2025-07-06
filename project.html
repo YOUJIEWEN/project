@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模拟百度搜索项目</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* margin: 0 auto; */
+            /* 垂直居中 */
+            height: 100vh;
+
+        }
+
+        /* .click {} */
+
+        span {
+            display: block;
+        }
+
+        input {
+            width: 600px;
+            height: 48px;
+            border-radius: 20px 0 0 20px;
+            margin-right: 2px;
+            font-size: 20px;
+            padding-left: 5px;
+        }
+
+        a {
+            text-decoration: none;
+            width: 110px;
+            height: 50px;
+            line-height: 50px;
+            background-color: rgba(25, 0, 255, 0.623);
+            color: #fff;
+            border-radius: 0 20px 20px 0;
+            display: block;
+            /* 水平居中 */
+            text-align: center;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <input type="text" placeholder=" 请输入关键词" id="searchInput">
+        <a href="#" class="searchBtn">
+            <span class="search">搜索</span>
+        </a>
+    </div>
+
+
+
+    <script>
+        //搜索函数
+        function SearchResult() {
+            const keyword = searchInput.value.trim();
+            if (keyword) {
+                // 这里模拟百度搜索跳转
+                //第一个参数：要打开的URL地址
+                //第二个参数：目标窗口名称('_blank'表示新窗口)
+                window.open(`https://www.baidu.com/s?wd=${encodeURIComponent(keyword)}`, '_blank');
+            } else {
+                alert('请输入搜索关键词');
+            }
+        }
+
+
+        //按钮搜索事件
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.querySelector('.searchBtn')
+
+        searchBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            SearchResult();
+        });
+
+        //回车搜索事件
+        searchInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                SearchResult();
+            }
+        })
+
+    </script>
+</body>
+
+</html>
